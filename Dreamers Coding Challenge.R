@@ -20,3 +20,6 @@ rf_mod <- ranger(target ~ ., data = new_train,
 predictions <- predict(rf_mod, data = test[,-1], type = "response")$predictions
 
 mean(predictions[1:50] == sample$target)
+
+submission <- cbind(test$row_id, predictions)
+write.csv(submission, file = "submission.csv")
