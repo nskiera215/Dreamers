@@ -21,5 +21,5 @@ predictions <- predict(rf_mod, data = test[,-1], type = "response")$predictions
 
 mean(predictions[1:50] == sample$target)
 
-submission <- cbind(row_id = test$row_id, predictions)
+submission <- data.frame(row_id = test$row_id, target = as.integer(predictions))
 write.csv(submission, file = "submission.csv")
